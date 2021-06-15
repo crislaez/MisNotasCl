@@ -1,0 +1,29 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { IonicModule } from '@ionic/angular';
+import { NotesPageRoutingModule } from './notes-routing.module';
+import { NotesPage } from './containers/notes.page';
+import { NotePage } from './containers/note.page';
+import { AddNotePage } from './containers/add-note.page';
+import { AddNoteFormPage } from './components/add-note-form.page';
+import { NoteModule } from '../shared/note/note.module'
+import { SharedModule } from '../shared/shared/shared.module';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+
+@NgModule({
+  imports: [
+    CommonModule,
+    IonicModule,
+    SharedModule,
+    NoteModule,
+    CKEditorModule,
+    NotesPageRoutingModule
+  ],
+  declarations: [
+    NotesPage,
+    NotePage,
+    AddNotePage,
+    AddNoteFormPage
+  ]
+})
+export class NotesPageModule {}

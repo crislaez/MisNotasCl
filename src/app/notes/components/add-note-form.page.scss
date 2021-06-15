@@ -1,0 +1,49 @@
+.form-note{
+  width: 100%;
+
+  ion-item{
+    width: 92%;
+    margin: 0 auto;
+
+    ion-input{
+      width: 91%;
+      margin: auto;
+    }
+
+    ion-textarea{
+      width: 96%;
+      margin: auto;
+
+      overflow-y: auto;
+    }
+  }
+
+  div{
+    width: 80%;
+    margin: auto;
+    margin-top: 20px;
+    // margin-top: 20px;
+
+    ion-button{
+      width: 100%;
+      height: 50px;
+
+    }
+  }
+
+}
+
+// .all-area{
+//   width: 100%;
+//   min-height: 500px;
+// }
+
+// ion-tabs, ion-tab-bar{
+//   z-index: 3;
+// }
+
+// ion-datetime{
+//   background: ;
+// }
+
+
