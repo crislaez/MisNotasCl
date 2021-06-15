@@ -1,6 +1,6 @@
 ## (front-end) MISNOTASCL
 
-MIsnotascl es una aplicación hecha en Ionic (Angular, TypeScript, Sass, html, Rxjs, Ngx)
+MIsnotascl es una aplicación hecha en Ionic (Angular, TypeScript, Sass/Css, Html, Rxjs, Ngx)
 
 <img src="https://github.com/crislaez/MisNotasCl/blob/master/src/assets/images/foto_proyecto_1.PNG" />
 <hr>
