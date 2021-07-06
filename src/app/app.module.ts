@@ -2,7 +2,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule, HammerModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
-import { Vibration } from '@ionic-native/vibration/ngx';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
@@ -45,8 +44,7 @@ import { ENVIRONMENT } from './core/externals';
     {
       provide: ENVIRONMENT,
       useValue: environment
-    },
-    Vibration
+    }
   ],
   bootstrap: [RootComponent],
 })

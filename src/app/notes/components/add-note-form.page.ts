@@ -2,9 +2,7 @@ import { Component, ChangeDetectionStrategy, Output, Input, EventEmitter, Simple
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
 import { Note } from '../../shared/note';
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import { Plugins, LocalNotificationActionPerformed,LocalNotification, Device  } from '@capacitor/core';
-const { LocalNotifications } = Plugins;
+import { LocalNotifications } from '@capacitor/local-notifications';
 
 @Component({
   selector: 'app-add-note-form',
@@ -25,7 +23,7 @@ const { LocalNotifications } = Plugins;
             <ion-datetime (ionCancel)="cancelDate($event)" class="color-components color-text" formControlName="alarm" display-format="DD/MM/YYYY HH:mm" placeholder="¿Quieres un aviso?" picker-format="YYYY-MM-DDTHH:mm" value="1990-02-19T07:43Z"></ion-datetime>
           </ion-item>
 
-          <div>
+          <div class="div-actions">
             <ion-button class="color-button" type="submit"><ion-icon  name="checkmark-circle-outline"></ion-icon></ion-button>
           </div>
         </form>
@@ -65,7 +63,7 @@ export class AddNoteFormPage {
 
   ngOnChanges(changes: SimpleChanges): void {
     if(this.editNote != null){
-      if (Object.keys(changes.editNote?.currentValue)?.length > 0){
+      if (Object.keys(changes.editNote?.currentValue || {})?.length > 0){
         const note = changes.editNote?.currentValue
         this.noteForm.patchValue(note)
         this.update = true;
@@ -85,22 +83,27 @@ export class AddNoteFormPage {
 
   async noteSubmit(event: Event){
     event.preventDefault();
+
     if(this.noteForm.invalid){
       if(!this.noteForm.value.title) this.handleButtonClick('rellena el titulo de la note')
     }else{
-      this.noteForm.controls.time.setValue(new Date().getTime())
+
+      this.noteForm.controls.time.setValue(new Date().getTime());
+
       if(this.noteForm?.value?.alarm && !await this.checkIsExistlocalNotification(this.noteForm.value?.notificationId?.toString())){
-        console.log('no existe y la activamos')
+        // console.log('no existe y la activamos')
         this.notification()
       }else{
         if(this.noteForm?.value?.alarm){
-          console.log('si existe y la la borramos y creamos una nueva')
-          await this.deleteNotification()
+          // console.log('si existe y la la borramos y creamos una nueva')
+          this.deleteNotification()
           this.notification()
         }else{
-          console.log(' a sido borrada')
+          // console.log(' a sido borrada')
         }
       }
+
+      this.showAlarm()
       this.saveNote.next({note: this.noteForm.value, update: this.update })
       this.noteForm.reset();
     }
@@ -142,7 +145,8 @@ export class AddNoteFormPage {
   async checkIsExistlocalNotification(noteIdnotification: string){
     let existLocalNotification = false
     await LocalNotifications.getPending().then( res => {
-      const notify = (res?.notifications || [])?.find(({id}) => id === noteIdnotification)
+      const notify = (res?.notifications || [])?.find(({id}) => id === Number(noteIdnotification))
+
       if(notify){
         existLocalNotification = true
       }else{
@@ -156,24 +160,28 @@ export class AddNoteFormPage {
 
   deleteNotification(): void{
     LocalNotifications.getPending().then( res => { //borramos la notificacion
-      const copyRes:{notifications: any} ={ ...res};
-      const notifyIndex = (res?.notifications || [])?.findIndex(({id}) => id === this.noteForm?.value?.notificationId?.toString())
-      // console.log(copyRes['notifications'][notifyIndex])
+      const copyRes:{notifications: any} = { ...res};
+      const notifyIndex = (res?.notifications || [])?.findIndex(({id}) => id?.toString() === this.noteForm?.value?.notificationId?.toString())
+
+      // console.log(res?.notifications )
+      // console.log(this.noteForm?.value?.notificationId?.toString())
       // console.log(res['notifications'][notifyIndex])
+
       if(notifyIndex !== -1){
         copyRes['notifications'] = [res['notifications'][notifyIndex]];
         LocalNotifications.cancel(copyRes)
       }
+
     }, err => {
         // console.log(err);
     })
   }
 
-  // showAlarm(): void{
-  //   LocalNotifications.getPending().then( res => { //borramos la notificacion
-  //     console.log(res)
-  //   })
-  // }
+  showAlarm(): void{
+    LocalNotifications.getPending().then( res => { //borramos la notificacion
+      console.log(res)
+    })
+  }
 
 
 

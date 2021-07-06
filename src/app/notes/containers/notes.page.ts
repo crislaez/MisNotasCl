@@ -1,13 +1,11 @@
-import { Component, ChangeDetectionStrategy, ViewChild, QueryList, ElementRef, ViewChildren, NgZone } from '@angular/core';
-import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators'
-import { fromNote, Note, NoteActions } from 'src/app/shared/note';
-import { Store, select} from '@ngrx/store';
-import { Gesture, GestureController, IonCard, AlertController } from '@ionic/angular';
-import { trackById } from '../../shared/shared/utils/utils'
+import { ChangeDetectionStrategy, Component, ElementRef, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { Router } from '@angular/router';
-import { Animation, AnimationController } from '@ionic/angular';
-import { Vibration } from '@ionic-native/vibration/ngx';
+import { AlertController, IonCard } from '@ionic/angular';
+import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
+import { fromNote, Note, NoteActions } from 'src/app/shared/note';
+import { trackById } from '../../shared/shared/utils/utils';
 
 
 @Component({
@@ -93,20 +91,13 @@ export class NotesPage {
   )
 
   constructor(private store: Store,
-    private gestureCtrl: GestureController,
     public alertController: AlertController,
-    private router: Router,
-    private animationCtrl: AnimationController,
-    private vibration: Vibration ) {
+    private router: Router ) {
     // this.notes$.subscribe(data => console.log(data))
 
   }
 
   async deleteNote(event: Event, note: Note, index: number) {
-    this.vibration.vibrate(1000);
-    // event?.stopPropagation();
-    // console.log(note)
-    // console.log(this.cards.toArray()[index].nativeElement)
     const alert = await this.alertController.create({
       header: 'Alerta',
       message:'Seguro que quieres borrar la nota?',

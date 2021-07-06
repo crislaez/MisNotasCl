@@ -1,14 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Location } from '@angular/common';
-import { Store, select } from '@ngrx/store';
+import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, switchMap, filter, tap, withLatestFrom } from 'rxjs/operators';
+import { of } from 'rxjs';
+import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { NoteActions } from '../actions';
 import { NoteService } from '../services/note.service';
-import { of } from 'rxjs';
-import { AlertController } from '@ionic/angular';import { Router } from '@angular/router';
-;
-
 
 @Injectable()
 export class NoteEffects {

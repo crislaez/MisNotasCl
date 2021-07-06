@@ -1,6 +1,6 @@
 {
-  "appId": "io.ionic.misnotascl",
-  "appName": "MisNotasCl",
+  "appId": "io.ionic.misnotas",
+  "appName": "Mis notas favoritas",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",

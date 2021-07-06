@@ -70,7 +70,6 @@ export class AddNotePage {
 
   constructor(private store: Store,
     private route: ActivatedRoute,
-    private router: Router,
     private _note: NoteService,
     public alertController: AlertController) {
     // this.pendingForm$.subscribe(data => console.log(data))

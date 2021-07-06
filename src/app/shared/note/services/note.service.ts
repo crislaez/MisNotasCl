@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, from, throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Note } from '../models';
-import { Plugins } from '@capacitor/core';
-const { Storage } = Plugins
+import { Storage } from '@capacitor/storage';
 
 
 @Injectable({

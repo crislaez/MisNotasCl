@@ -1,7 +1,0 @@
-<?xml version='1.0' encoding='utf-8'?>
-<resources>
-    <string name="app_name">MisNotasCl</string>
-    <string name="title_activity_main">MisNotasCl</string>
-    <string name="package_name">io.ionic.misnotascl</string>
-    <string name="custom_url_scheme">io.ionic.misnotascl</string>
-</resources>

@@ -22,10 +22,14 @@
     width: 80%;
     margin: auto;
     margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
     // margin-top: 20px;
 
     ion-button{
-      width: 100%;
+      width: 80%;
       height: 50px;
 
     }
@@ -33,6 +37,9 @@
 
 }
 
+.div-actions{
+  height: 80px;
+}
 // .all-area{
 //   width: 100%;
 //   min-height: 500px;
