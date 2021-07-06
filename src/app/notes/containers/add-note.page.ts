@@ -10,7 +10,7 @@ import { fromNote, Note, NoteActions, NoteService } from '../../shared/note';
   selector: 'app-add-note',
   template:`
   <ion-content [fullscreen]="true">
-    <div class="container" >
+    <div class="container color-components" >
 
       <div class="header">
         <ion-back-button class="color-text" defaultHref="/notes" [text]="''"></ion-back-button>

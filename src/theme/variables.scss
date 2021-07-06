@@ -325,6 +325,11 @@ ion-list{
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
+  align-content:flex-start
+}
+
+ion-content{
+  --background: #282c34 !important;
 }
 
 .content-align{
@@ -345,7 +350,7 @@ ion-card{
   flex-wrap: wrap;
   justify-content: space-around;
   align-content: center;
-  margin-bottom: 70px;
+  // margin-bottom: 70px;
 
   ion-back-button{
     width: 15%;

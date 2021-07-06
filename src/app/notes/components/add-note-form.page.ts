@@ -3,6 +3,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
 import { Note } from '../../shared/note';
 import { LocalNotifications } from '@capacitor/local-notifications';
+import { Keyboard } from '@capacitor/keyboard';
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-add-note-form',
@@ -15,8 +17,7 @@ import { LocalNotifications } from '@capacitor/local-notifications';
           </ion-item>
 
           <div class="color-components all-area">
-            <!-- <ckeditor formControlName="body" [editor]="ClassicEditor" data="<p>Hello, world!</p>"></ckeditor> -->
-            <ion-textarea class="color-components color-common all-area"  rows="25" autocomplete="on" autocorrect="on" placeholder="contenido..." formControlName="body" ></ion-textarea>
+            <ion-textarea class="color-components color-common all-area" rows="20" autocomplete="on" autocorrect="on" placeholder="contenido..." formControlName="body" (focusout)="handleFocus($event)"></ion-textarea>
           </div>
 
           <ion-item class="color-components color-text">
@@ -53,7 +54,7 @@ export class AddNoteFormPage {
   });
 
 
-  constructor(public alertController: AlertController) {  }
+  constructor(public alertController: AlertController, public platform: Platform) {  }
 
 
   ngOnInit(): void{
@@ -103,7 +104,7 @@ export class AddNoteFormPage {
         }
       }
 
-      this.showAlarm()
+      // this.showAlarm()
       this.saveNote.next({note: this.noteForm.value, update: this.update })
       this.noteForm.reset();
     }
@@ -177,10 +178,14 @@ export class AddNoteFormPage {
     })
   }
 
-  showAlarm(): void{
-    LocalNotifications.getPending().then( res => { //borramos la notificacion
-      console.log(res)
-    })
+  // showAlarm(): void{
+  //   LocalNotifications.getPending().then( res => { //borramos la notificacion
+  //     console.log(res)
+  //   })
+  // }
+
+  handleFocus(event: Event): void{
+    console.log(event)
   }
 
 

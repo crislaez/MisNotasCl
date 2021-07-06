@@ -10,8 +10,8 @@
     },
     "LocalNotifications": {
       "smallIcon": "ic_stat_icon_config_sample",
-      "iconColor": "61dafb",
-      "sound": "hawk1.wav"
+      "iconColor": "#488AFF",
+      "sound": "beep.wav"
     }
   },
   "cordova": {}
